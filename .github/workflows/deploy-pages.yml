@@ -12,7 +12,8 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  # Keep deployment runs queued instead of cancelling a valid build.
+  cancel-in-progress: false
 
 jobs:
   build:
