@@ -17,8 +17,6 @@ gdxTeaVM {
         outputDir = file("${buildDir}/dist")
         optimization = org.teavm.gradle.api.OptimizationLevel.BALANCED
         obfuscated = true
-        minHeapSizeMb = 128
-        maxHeapSizeMb = 1024
     }
 }
 
