@@ -28,13 +28,41 @@ jobs:
           set -euo pipefail
           rm -rf /tmp/game2d
           mkdir -p /tmp/game2d
-          base64 -d source/game2d.zip.b64 > /tmp/game2d/project.zip
-          unzip -t /tmp/game2d/project.zip
-          unzip -q /tmp/game2d/project.zip -d /tmp/game2d
+          set +e
+          found=""
+          for f in source/*.b64; do
+            base64 -d "$f" > /tmp/game2d/candidate.bin 2>/dev/null
+            if [ $? -ne 0 ]; then continue; fi
+            if unzip -t /tmp/game2d/candidate.bin >/tmp/game2d/unzip.log 2>&1; then
+              echo "VALID ZIP: $f"
+              cat /tmp/game2d/unzip.log
+              found="$f"
+              break
+            fi
+            if xz -t /tmp/game2d/candidate.bin >/tmp/game2d/xz.log 2>&1; then
+              echo "VALID XZ: $f"
+              cat /tmp/game2d/xz.log
+              found="$f"
+              break
+            fi
+          done
+          set -e
+          if [ -z "$found" ]; then
+            echo "No valid complete archive found in source/*.b64"
+            exit 1
+          fi
+          base64 -d "$found" > /tmp/game2d/project.bin
+          if unzip -t /tmp/game2d/project.bin >/dev/null 2>&1; then
+            unzip -q /tmp/game2d/project.bin -d /tmp/game2d
+          else
+            mkdir -p /tmp/game2d/xz
+            tar -xJf /tmp/game2d/project.bin -C /tmp/game2d/xz
+            cp -a /tmp/game2d/xz/. /tmp/game2d/
+          fi
           PROJECT_DIR="$(dirname "$(find /tmp/game2d -type f -name settings.gradle -print -quit)")"
           test -n "$PROJECT_DIR"
           test -f "$PROJECT_DIR/html/build.gradle"
-          printf '%s\\n' "$PROJECT_DIR" > /tmp/game2d/project_dir
+          printf '%s\n' "$PROJECT_DIR" > /tmp/game2d/project_dir
 
       - name: Set up Java 17
 
