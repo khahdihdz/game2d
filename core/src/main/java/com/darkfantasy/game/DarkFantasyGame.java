@@ -194,7 +194,7 @@ public class DarkFantasyGame extends ApplicationAdapter {
     private void center(String s,float y){GlyphLayout l=new GlyphLayout(font,s);font.draw(batch,s,(W-l.width)/2,y);}
     private void centerSmall(String s,float y){GlyphLayout l=new GlyphLayout(small,s);small.draw(batch,s,(W-l.width)/2,y);}
     private static String repeat(char c,int n){StringBuilder b=new StringBuilder();for(int i=0;i<n;i++)b.append(c);return b.toString();}
-    private String timeText(){int t=(int)time;return String.format("%02d:%02d",t/60,t%60);}
+    private String timeText(){int t=(int)time;int m=t/60;int s=t%60;return (m<10?"0":"")+m+":"+(s<10?"0":"")+s;}
 
     private void upgrade(int i){
         if(i==0){power++;cooldown=Math.max(.22f,cooldown-.05f);}
