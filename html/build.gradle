@@ -12,8 +12,7 @@ java { toolchain { languageVersion = JavaLanguageVersion.of(17) } }
 
 gdxTeaVM {
     assets.from(file('../core/assets'))
-
-    js('release') {
+    js {
         mainClass = 'com.darkfantasy.game.WebLauncher'
         outputDir = file("${buildDir}/dist")
         optimization = org.teavm.gradle.api.OptimizationLevel.BALANCED
@@ -26,5 +25,5 @@ gdxTeaVM {
 tasks.register('dist') {
     group = 'distribution'
     description = 'Build the production browser bundle.'
-    dependsOn 'gdx_teavm_web_js_release_build'
+    dependsOn 'gdx_teavm_web_js_build'
 }
