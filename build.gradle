@@ -1,22 +1,11 @@
-plugins {
-    id 'java-library' apply false
-}
-
 allprojects {
     group = 'com.darkfantasy'
-    version = project.findProperty('projectVersion') ?: '2.0.0'
-    repositories { mavenCentral() }
+    version = project.findProperty('projectVersion') ?: '2.1.0'
 }
 
 subprojects {
-    apply plugin: 'java-library'
-    java {
-        toolchain { languageVersion = JavaLanguageVersion.of(17) }
-        withSourcesJar()
-    }
-    tasks.withType(JavaCompile).configureEach {
-        options.encoding = 'UTF-8'
-        options.release = 11
-        options.incremental = true
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
     }
 }
