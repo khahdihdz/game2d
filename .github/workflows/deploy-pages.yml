@@ -22,51 +22,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Restore complete project source
+      - name: Verify project source
         shell: bash
         run: |
           set -euo pipefail
-          rm -rf /tmp/game2d
-          mkdir -p /tmp/game2d
-          set +e
-          found=""
-          for f in source/*.b64; do
-            base64 -d "$f" > /tmp/game2d/candidate.bin 2>/dev/null
-            if [ $? -ne 0 ]; then continue; fi
-            if unzip -t /tmp/game2d/candidate.bin >/tmp/game2d/unzip.log 2>&1; then
-              echo "VALID ZIP: $f"
-              cat /tmp/game2d/unzip.log
-              found="$f"
-              break
-            fi
-            if xz -t /tmp/game2d/candidate.bin >/tmp/game2d/xz.log 2>&1; then
-              echo "VALID XZ: $f"
-              cat /tmp/game2d/xz.log
-              found="$f"
-              break
-            fi
-          done
-          set -e
-          if [ -z "$found" ]; then
-            echo "No valid complete archive found in source/*.b64"
-            exit 1
-          fi
-          base64 -d "$found" > /tmp/game2d/project.bin
-          if unzip -t /tmp/game2d/project.bin >/dev/null 2>&1; then
-            unzip -q /tmp/game2d/project.bin -d /tmp/game2d
-          else
-            mkdir -p /tmp/game2d/xz
-            tar -xJf /tmp/game2d/project.bin -C /tmp/game2d/xz
-            cp -a /tmp/game2d/xz/. /tmp/game2d/
-          fi
-          PROJECT_DIR="$(dirname "$(find /tmp/game2d -type f -name settings.gradle -print -quit)")"
-          test -n "$PROJECT_DIR"
-          test -f "$PROJECT_DIR/html/build.gradle"
-          printf '%s\n' "$PROJECT_DIR" > /tmp/game2d/project_dir
+          test -f settings.gradle
+          test -f core/src/main/java/com/darkfantasy/game/DarkFantasyGame.java
+          test -f html/src/main/java/com/darkfantasy/game/WebLauncher.java
 
-      - name: Set up Java 17
-
-        uses: actions/setup-java@v4
+      - name: Set up Java 17        uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
@@ -77,23 +41,17 @@ jobs:
           gradle-version: '9.8'
 
       - name: Build HTML5 production bundle
-        shell: bash
-        run: |
-          set -euo pipefail
-          PROJECT_DIR="$(cat /tmp/game2d/project_dir)"
-          cd "$PROJECT_DIR"
-          gradle --no-daemon --stacktrace html:dist
-          rm -rf /tmp/game2d/dist
-          cp -a html/build/dist /tmp/game2d/dist
+        run: gradle --no-daemon --stacktrace html:dist
 
       - name: Configure Pages
+
 
         uses: actions/configure-pages@v5
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: /tmp/game2d/dist
+          path: html/build/dist
 
   deploy:
     environment:
