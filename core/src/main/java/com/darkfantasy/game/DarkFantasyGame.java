@@ -165,7 +165,7 @@ public class DarkFantasyGame extends ApplicationAdapter {
         shape.setColor(Color.valueOf("ddd4ff"));shape.circle(player.x,player.y,13);
         shape.setColor(Color.valueOf("21154b"));shape.circle(player.x,player.y,8);shape.end();
         drawHud();
-        if(levelUp)cards();else if(gameOver)gameOver();else if(paused)pause();
+        if(levelUp)cards();else if(gameOver)gameOver();else if(paused)drawPause();
     }
 
     private void drawHud() {
@@ -189,7 +189,7 @@ public class DarkFantasyGame extends ApplicationAdapter {
     }
 
     private void gameOver(){overlay();batch.begin();font.setColor(Color.valueOf("ff6b8b"));center("THE ABYSS CLAIMS YOU",H/2+45);small.setColor(Color.WHITE);centerSmall("Level "+level+" • "+kills+" kills • "+timeText(),H/2);centerSmall("ENTER or tap to rise again",H/2-45);batch.end();}
-    private void pause(){overlay();batch.begin();font.setColor(Color.WHITE);center("PAUSED",H/2+10);small.setColor(Color.valueOf("b9afd7"));centerSmall("SPACE to resume",H/2-30);batch.end();}
+    private void drawPause(){overlay();batch.begin();font.setColor(Color.WHITE);center("PAUSED",H/2+10);small.setColor(Color.valueOf("b9afd7"));centerSmall("SPACE to resume",H/2-30);batch.end();}
     private void overlay(){shape.begin(ShapeRenderer.ShapeType.Filled);shape.setColor(0,0,0,.62f);shape.rect(0,0,W,H);shape.end();}
     private void center(String s,float y){GlyphLayout l=new GlyphLayout(font,s);font.draw(batch,s,(W-l.width)/2,y);}
     private void centerSmall(String s,float y){GlyphLayout l=new GlyphLayout(small,s);small.draw(batch,s,(W-l.width)/2,y);}
