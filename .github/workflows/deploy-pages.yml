@@ -34,8 +34,7 @@ jobs:
           PROJECT_DIR="$(dirname "$(find /tmp/game2d -type f -name settings.gradle -print -quit)")"
           test -n "$PROJECT_DIR"
           test -f "$PROJECT_DIR/html/build.gradle"
-          printf '%s
-' "$PROJECT_DIR" > /tmp/game2d/project_dir
+          printf '%s\\n' "$PROJECT_DIR" > /tmp/game2d/project_dir
 
       - name: Set up Java 17
 
