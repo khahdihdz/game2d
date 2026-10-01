@@ -27,7 +27,7 @@ jobs:
           set -euo pipefail
           rm -rf /tmp/game2d
           mkdir -p /tmp/game2d
-          cat source/game2d-source.txz.b64.00 source/game2d-source.txz.b64.01 source/game2d-source.txz.b64.02 source/game2d-source.txz.b64.03 > /tmp/game2d/source.txz.b64
+          cat source/game2d-source.txz.b64.00a source/game2d-source.txz.b64.00b source/game2d-source.txz.b64.00c source/game2d-source.txz.b64.01 source/game2d-source.txz.b64.02 source/game2d-source.txz.b64.03 > /tmp/game2d/source.txz.b64
           base64 -d /tmp/game2d/source.txz.b64 > /tmp/game2d/source.txz
           xz -t /tmp/game2d/source.txz
           tar -xJf /tmp/game2d/source.txz -C /tmp/game2d
