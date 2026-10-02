@@ -1,0 +1,325 @@
+{
+  "format": "RGBA PNG",
+  "frame_sizes": {
+    "characters": [
+      64,
+      64
+    ],
+    "enemies": [
+      64,
+      64
+    ],
+    "bosses": [
+      128,
+      128
+    ],
+    "weapons": [
+      64,
+      64
+    ],
+    "vfx": [
+      64,
+      64
+    ],
+    "items": [
+      32,
+      32
+    ],
+    "tiles": [
+      32,
+      32
+    ]
+  },
+  "sheets": [
+    {
+      "path": "core/assets/characters/player_idle_64.png",
+      "frame": [
+        64,
+        64
+      ],
+      "columns": 4
+    },
+    {
+      "path": "core/assets/characters/player_move_64.png",
+      "frame": [
+        64,
+        64
+      ],
+      "columns": 4
+    },
+    {
+      "path": "core/assets/characters/player_attack_64.png",
+      "frame": [
+        64,
+        64
+      ],
+      "columns": 4
+    },
+    {
+      "path": "core/assets/characters/player_skill_64.png",
+      "frame": [
+        64,
+        64
+      ],
+      "columns": 4
+    },
+    {
+      "path": "core/assets/characters/player_hurt_64.png",
+      "frame": [
+        64,
+        64
+      ],
+      "columns": 4
+    },
+    {
+      "path": "core/assets/characters/player_death_64.png",
+      "frame": [
+        64,
+        64
+      ],
+      "columns": 4
+    },
+    {
+      "path": "core/assets/enemies/zombie_64.png",
+      "frame": [
+        64,
+        64
+      ],
+      "columns": 4
+    },
+    {
+      "path": "core/assets/enemies/skeleton_64.png",
+      "frame": [
+        64,
+        64
+      ],
+      "columns": 4
+    },
+    {
+      "path": "core/assets/enemies/goblin_64.png",
+      "frame": [
+        64,
+        64
+      ],
+      "columns": 4
+    },
+    {
+      "path": "core/assets/enemies/orc_64.png",
+      "frame": [
+        64,
+        64
+      ],
+      "columns": 4
+    },
+    {
+      "path": "core/assets/enemies/wolf_64.png",
+      "frame": [
+        64,
+        64
+      ],
+      "columns": 4
+    },
+    {
+      "path": "core/assets/enemies/spider_64.png",
+      "frame": [
+        64,
+        64
+      ],
+      "columns": 4
+    },
+    {
+      "path": "core/assets/enemies/bat_64.png",
+      "frame": [
+        64,
+        64
+      ],
+      "columns": 4
+    },
+    {
+      "path": "core/assets/bosses/necromancer_128.png",
+      "frame": [
+        128,
+        128
+      ],
+      "columns": 4
+    },
+    {
+      "path": "core/assets/bosses/lich_128.png",
+      "frame": [
+        128,
+        128
+      ],
+      "columns": 4
+    },
+    {
+      "path": "core/assets/bosses/demon_lord_128.png",
+      "frame": [
+        128,
+        128
+      ],
+      "columns": 4
+    },
+    {
+      "path": "core/assets/weapons/swords_64.png",
+      "frame": [
+        64,
+        64
+      ],
+      "columns": 6
+    },
+    {
+      "path": "core/assets/weapons/bows_64.png",
+      "frame": [
+        64,
+        64
+      ],
+      "columns": 6
+    },
+    {
+      "path": "core/assets/weapons/magic_64.png",
+      "frame": [
+        64,
+        64
+      ],
+      "columns": 6
+    },
+    {
+      "path": "core/assets/weapons/daggers_64.png",
+      "frame": [
+        64,
+        64
+      ],
+      "columns": 6
+    },
+    {
+      "path": "core/assets/weapons/projectiles_64.png",
+      "frame": [
+        64,
+        64
+      ],
+      "columns": 6
+    },
+    {
+      "path": "core/assets/vfx/explosion_64.png",
+      "frame": [
+        64,
+        64
+      ],
+      "columns": 6
+    },
+    {
+      "path": "core/assets/vfx/magic_64.png",
+      "frame": [
+        64,
+        64
+      ],
+      "columns": 6
+    },
+    {
+      "path": "core/assets/vfx/blood_64.png",
+      "frame": [
+        64,
+        64
+      ],
+      "columns": 6
+    },
+    {
+      "path": "core/assets/vfx/heal_64.png",
+      "frame": [
+        64,
+        64
+      ],
+      "columns": 6
+    },
+    {
+      "path": "core/assets/vfx/level_up_64.png",
+      "frame": [
+        64,
+        64
+      ],
+      "columns": 6
+    },
+    {
+      "path": "core/assets/vfx/dust_64.png",
+      "frame": [
+        64,
+        64
+      ],
+      "columns": 6
+    },
+    {
+      "path": "core/assets/items/xp_32.png",
+      "frame": [
+        32,
+        32
+      ],
+      "columns": 4
+    },
+    {
+      "path": "core/assets/items/hp_potion_32.png",
+      "frame": [
+        32,
+        32
+      ],
+      "columns": 4
+    },
+    {
+      "path": "core/assets/items/mana_potion_32.png",
+      "frame": [
+        32,
+        32
+      ],
+      "columns": 4
+    },
+    {
+      "path": "core/assets/items/gems_32.png",
+      "frame": [
+        32,
+        32
+      ],
+      "columns": 4
+    },
+    {
+      "path": "core/assets/items/coins_32.png",
+      "frame": [
+        32,
+        32
+      ],
+      "columns": 4
+    },
+    {
+      "path": "core/assets/items/keys_32.png",
+      "frame": [
+        32,
+        32
+      ],
+      "columns": 4
+    },
+    {
+      "path": "core/assets/items/chest_32.png",
+      "frame": [
+        32,
+        32
+      ],
+      "columns": 4
+    },
+    {
+      "path": "core/assets/tiles/tileset_32.png",
+      "frame": [
+        32,
+        32
+      ],
+      "columns": 8,
+      "rows": 8
+    },
+    {
+      "path": "core/assets/ui/icons_32.png",
+      "frame": [
+        32,
+        32
+      ],
+      "columns": 8,
+      "rows": 4
+    }
+  ]
+}
