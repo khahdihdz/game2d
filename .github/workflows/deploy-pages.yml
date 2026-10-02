@@ -12,7 +12,6 @@ permissions:
 
 concurrency:
   group: pages
-  # Keep deployment runs queued instead of cancelling a valid build.
   cancel-in-progress: false
 
 jobs:
@@ -44,10 +43,17 @@ jobs:
       - name: Build HTML5 production bundle
         run: gradle --no-daemon --stacktrace html:dist
 
+      - name: Verify Pages entry point
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f html/build/dist/webapp/index.html
+          test -f html/build/dist/webapp/app.js
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: html/build/dist
+          path: html/build/dist/webapp
 
   deploy:
     environment:
