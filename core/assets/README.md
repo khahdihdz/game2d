@@ -1,0 +1,1 @@
+Dark Fantasy Survivor RPG PNG assets are generated into this directory by tools/generate_assets.py during the GitHub Pages build. See manifest.json for sheet paths and frame dimensions. The generated assets include player/enemy/boss animation sheets, weapons, VFX, items, 32px tiles, and UI icons.
