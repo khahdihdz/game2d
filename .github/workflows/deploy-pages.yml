@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -40,22 +40,10 @@ jobs:
           python tools/generate_assets.py
           test -f core/assets/characters/player_idle_64.png
           test -f core/assets/enemies/zombie_64.png
+          test -f core/assets/weapons/magic_64.png
+          test -f core/assets/items/xp_32.png
           test -f core/assets/tiles/tileset_32.png
           test -f core/assets/ui/icons_32.png
-
-      - name: Commit generated PNG assets into core/assets
-        shell: bash
-        run: |
-          set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add core/assets
-          if ! git diff --cached --quiet; then
-            git commit -m "chore: add generated dark fantasy PNG assets"
-            git push origin HEAD:main
-          else
-            echo "Asset files are already up to date."
-          fi
 
       - name: Set up Java 17
         uses: actions/setup-java@v4
@@ -71,12 +59,13 @@ jobs:
       - name: Build HTML5 production bundle
         run: gradle --no-daemon --stacktrace html:dist
 
-      - name: Verify Pages entry point
+      - name: Verify Pages entry point and assets
         shell: bash
         run: |
           set -euo pipefail
           test -f html/build/dist/webapp/index.html
           test -f html/build/dist/webapp/app.js
+          find html/build/dist/webapp -type f -name '*.png' | grep -q 'player_idle_64.png'
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
